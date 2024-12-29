@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="EXAM1.js" ></script>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>IDENTIFICATION</legend>
+            <label>Login : </label>
+            <input id="inp" class="a" type="text"/><br>
+            <label>Mot de passe : </label>
+            <input id="inp" type="password"/><br>
+            <label>Confirmer mot passe : </label>
+            <input id="inp" type="password"/><br>
+            <label>Ville : </label>
+            <select multiple  >
+                <option value="Selectionner votre ville">Selectionner votre ville</option>
+                <option value="Casa">Casa</option>
+                <option value="Rabat">Rabat</option>
+                <option value="Fés">Fés</option>
+                <option value="Meknés">Meknés</option>
+                <option value="Ifran">Ifran</option>
+            </select>
+            <br>
+            <label>Centres d'interes </label>
+            <input  id="check" type="checkbox"><span>handball</span>
+            <input id="check" type="checkbox"><span>Fotball</span>
+            <input id="check" type="checkbox"><span>bascketball</span>
+        </fieldset>
+        <fieldset>
+            <legend>Paiement</legend>
+            <h5>Paiement par : </h5><br>
+            <input type="radio">Carte Bancaire(numero) <input id="inp" class="carte" type="number"/><br>
+            <input type="radio">Especes <input id="inp" class="especes" type="text"/><br>
+            <input type="radio">Cheque(numero) <input id="inp" class="cheque" type="number"/><br>
+            <input type="button" onclick="validerForm()" value="Valider Formulaire"/><input type="button" onclick="apercu()" value="apercu"/>
+
+        </fieldset>
+    </form>
+    <div>
+
+    </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des régions</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Liste des régions</h1>
+    <input type="file" id="fileInput">
+    <button id="afficherBtn">Afficher Régions</button>
+    <div id="regionsTable"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+    $(document).ready(function() {
+    $('#afficherBtn').click(function() {
+        var file = $('#fileInput').prop('files')[0];
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var jsonContent = e.target.result;
+            var regions = JSON.parse(jsonContent).Regions;
+            var tableHtml = '<table>' +
+                '<thead><tr><th>Code</th><th>Nom</th><th>Villes</th></tr></thead>' +
+                '<tbody>';
+
+            regions.forEach(function(region) {
+                var code = Object.keys(region)[0];
+                var nom = region[code].nom;
+                var villes = region[code].villes.join(', ');
+                tableHtml += '<tr><td>' + code + '</td><td>' + nom + '</td><td>' + villes + '</td></tr>';
+            });
+
+            tableHtml += '</tbody></table>';
+            $('#regionsTable').html(tableHtml);
+        };
+
+        reader.readAsText(file);
+    });
+});
+
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<form >
+    <button type="button" onclick="OKK()" ></button>
+    
+    <button type="button"  id="b"></button>
+
+    <script>
+        //1.evenement dans html est le script :
+        function OKK(){
+        alert("barvoo!")
+        }
+        //2.evenemnt dans le script :
+    
+        let b = document.getElementById("b");
+        b.addEventListener("click",OK);
+        b.addEventListener("click",KO)
+        b.addEventListener("mouseover",PO);
+        b.addEventListener("mouseout",OP);
+        function OK(){
+            alert("bravo!")
+        }
+        function KO(){
+            alert("Ok")
+        }
+        function PO(){
+            b.style.background="red";
+        }
+        function OP(){
+            b.style.background="white";
+        }
+       </script>
+</form>   
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Diaporama d'images</title>
+    <style>
+      /* Style pour centrer l'image */
+      .image-container {
+        display: flex;
+        justify-content: center;
+      }
+      
+      /* Style pour ajuster la taille de l'image */
+      .image {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-container">
+      <img class="image" src="téléchargement.png" alt="image diaporama">
+    </div>
+    
+    <div>
+      <button id="precedent">Précédent</button>
+      <button id="suivant">Suivant</button>
+    </div>
+    
+    <script>
+      // Tableau contenant les noms d'images
+      var images = ["image1.jpg", "image2.jpg", "image3.jpg"];
+      
+      // Index de l'image affichée actuellement
+      var index = 0;
+      
+      // Récupération des éléments HTML
+      var imageElement = document.querySelector('.image');
+      var precedentButton = document.querySelector('#precedent');
+      var suivantButton = document.querySelector('#suivant');
+      
+      // Fonction pour afficher l'image correspondant à l'index donné
+      function afficherImage(index) {
+        imageElement.src = images[index];
+      }
+      
+      // Initialisation du diaporama avec la première image
+      afficherImage(index);
+      
+      // Gestion du clic sur le bouton précédent
+      precedentButton.addEventListener('click', function() {
+        index--;
+        if (index < 0) {
+          index = images.length - 1;
+        }
+        afficherImage(index);
+      });
+      
+      // Gestion du clic sur le bouton suivant
+      suivantButton.addEventListener('click', function() {
+        index++;
+        if (index >= images.length) {
+          index = 0;
+        }
+        afficherImage(index);
+      });
+    </script>
+  </body>
+</html>

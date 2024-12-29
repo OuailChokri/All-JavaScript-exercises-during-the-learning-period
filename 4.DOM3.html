@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+</head>
+<body>
+
+    <a href="#">lien1</a>
+    <p id="p" ></p>
+        <a href="#">lien2</a>
+        <a href="#">lien3</a>
+        <a href="#">lien4</a>
+
+        <script >
+            let par = document.getElementById("p");
+let liens = par.getElementsByTagName("a");
+let res = "Les liens :";
+for (let i=0;i<liens.length;i++){
+    res+=liens[i].innerHTML+" "
+    console.log(res);
+}
+    alert(res);
+        </script>
+ 
+    
+</body>
+</html>

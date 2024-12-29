@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table tr,td,th{
+            border: solid 2px;
+            border-collapse: collapse;
+        }
+    </style>
+  <script>
+    function ajouter(){
+        var i = prompt("ID :");
+        var nom = prompt("Nom :");        
+        document.getElementById("l1").insertAdjacentHTML("afterend",' <tr><td>'+i+'</td><td>'+nom+'</td></tr>');
+    }
+//beforebegin
+//afterbegin
+//beforeend
+//afterend
+  </script>
+</head>
+<body>
+
+    <h1>Exrercice SUR L'ajoute d'un Nouvel élement via java script</h1>
+    <table id="tb" >
+        <tr id="l1"><th>ID</th><th>Nom</th></tr>
+        <tr><td>1111</td><td>ELHAKIMI</td></tr>
+    </table>
+    <br><br/>
+    <button type="button" onclick="ajouter()" >Ajouter un nouvele ligne</button>
+    
+</body>
+</html>

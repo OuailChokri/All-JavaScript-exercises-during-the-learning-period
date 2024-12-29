@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exemple d'interface HTML</title>
+	<script>
+		function creerParagraphe() {
+			var nouveauParagraphe = document.createElement("p");
+			var texte = document.createTextNode("Ceci est un nouveau paragraphe.");
+			nouveauParagraphe.appendChild(texte);
+			document.body.appendChild(nouveauParagraphe);
+		}
+
+		function creerBouton() {
+			var nouveauBouton = document.createElement("button");
+			var texte = document.createTextNode("Nouveau bouton");
+			nouveauBouton.appendChild(texte);
+			document.body.appendChild(nouveauBouton);
+		}
+	</script>
+</head>
+<body>
+	<button onclick="creerParagraphe()">Créer un paragraphe</button>
+	<button onclick="creerBouton()">Créer un bouton</button>
+</body>
+</html>

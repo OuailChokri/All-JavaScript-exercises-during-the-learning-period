@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      table, th, tr, td {
+        border: 2px;
+        border-collapse: collapse;
+        border: solid;
+      }
+    </style>
+  </head>
+  <body onload="remplirTable()">
+    <p>Remplir un tableau à partir d'une liste d'objets</p>
+    <input type="text" id="searchInput" placeholder="Rechercher">
+    <button onclick="rechercher()">Rechercher</button>
+    <table id="myTable">
+      <tr>
+        <th>CIN</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+      </tr>
+    </table>
+    <script>
+      var x = [
+        {CIN:22232, firstname: 'John', lastname: 'Doe'},
+        {CIN:87217, firstname: 'Jack', lastname: 'Doti'},
+        {CIN:1232, firstname: 'Jack', lastname: 'Worty'}
+      ];
+
+      function remplirTable() {
+        var table = document.getElementById('myTable');
+        for (var i = 0; i < x.length; i++) {
+          var row = table.insertRow();
+          var cinCell = row.insertCell(0);
+          var firstnameCell = row.insertCell(1);
+          var lastnameCell = row.insertCell(2);
+          cinCell.innerHTML = x[i].CIN;
+          firstnameCell.innerHTML = x[i].firstname;
+          lastnameCell.innerHTML = x[i].lastname;
+        }
+      }
+
+      function rechercher() {
+        var input = document.getElementById('searchInput');
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById('myTable');
+        var rows = table.getElementsByTagName('tr');
+        for (var i = 1; i < rows.length; i++) {
+          var cells = rows[i].getElementsByTagName('td');
+          var found = false;
+          for (var j = 0; j < cells.length; j++) {
+            var cellText = cells[j].textContent || cells[j].innerText;
+            if (cellText.toUpperCase().indexOf(filter) > -1) {
+              found = true;
+              break;
+            }
+          }
+          rows[i].style.display = found ? '' : 'none';
+        }
+      }
+    </script>
+  </body>
+</html>

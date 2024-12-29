@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    // constructeur :
+    function Telephone (n,p,s,r){
+        this.nom = n;
+        this.prix = p;
+        this.stock = s;
+        this.ref = r;
+        this.VerifierStock = function(){
+            if (this.stock >0){return true;}
+            else {return false;}
+        }
+    }
+    //Creation des objets :
+    var t1 = new Telephone("SmartF22",400,200,"pro1");
+    var t2 = new Telephone("t2",200,0,"Mi Max");
+    console.log(t1.nom);
+    console.log(t2.VerifierStock());
+    //Ajouter :
+    t1.marque = "M1";
+    console.log(t1.marque);
+    // pour delete l modification :
+    delete t1.marque;
+    //boucle on travaille pour le  key :
+    for (const key in t1){
+        console.log (key);
+    }
+    
+</script>
+</head>
+<body>
+    
+</body>
+</html>

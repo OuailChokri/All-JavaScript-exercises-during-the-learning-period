@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        
+        function validationchamps(){
+            var select = document.querySelector('select');
+            if(select.value == ""){
+                alert("please select un choix");
+                return false;
+            }
+            var quantite = document.querySelector('input[type=number]');
+            if(quantite.value =="" && quantite.value==0 && quantite.value>10){
+                alert("please ecrire un quantite en petite de 10!");
+                return false;
+            }
+        }
+        function remplirtvs(){
+            var data = `{
+  "tvs": [
+    {"nom": "SAMSUNG QLED Q65Q80AA", "prix": 1799, "taille": 65},
+    {"nom": "TCL QLED 55C825", "prix": 6100, "taille": 42},
+    {"nom": "SONY OLED XR-75X90J", "prix": 25000, "taille": 52},
+    {"nom": "LG OLED 77C1PVA", "prix": 9000, "taille": 65}
+  ]
+}`;
+
+            
+            var jsonObject = JSON.parse(data);
+            var select = document.querySelector('select');
+            for(var i=0;i<jsonObject.tvs.length;i++){
+                select.insertAdjacentHTML('beforeend',"<option>"+jsonObject.tvs[i].nom+"</option>")
+            }
+        }
+        function ajouterAuPanier(){
+            var tab = document.getElementById('tab');
+            var tvselect = document.querySelector('select option:checked').value;
+            var valeurquantite = document.querySelector('input[type=number]').value;
+            tab.insertAdjacentHTML('beforeend',"<tr id='t'><td>"+tvselect+"</td><td>"+valeurquantite+"</td><td><button onclick='supprimerDuPanier(this)' >Supprimer</button></td></tr>");
+            calculerPrixHT()
+        }
+        function supprimerDuPanier(e){
+                var tab = document.querySelector('#tab');
+                tab.removeChild(e.parentNode.parentNode.parentNode);
+        }
+
+      
+  
+      /*  function calculerPrixHT() {
+  var data = `{
+    "tvs": [
+      {"nom": "SAMSUNG QLED Q65Q80AA", "prix": 1799, "taille": 65},
+      {"nom": "TCL QLED 55C825", "prix": 6100, "taille": 42},
+      {"nom": "SONY OLED XR-75X90J", "prix": 25000, "taille": 52},
+      {"nom": "LG OLED 77C1PVA", "prix": 9000, "taille": 65}
+    ]
+  }`;
+  var quantite = document.querySelector("input[type=number]").value;
+  var jsonObject = JSON.parse(data);
+  var span1 = document.getElementById('span1');
+
+  var t = document.querySelectorAll('#t');
+  var tvNames = [];
+  var tvPrices = [];
+
+  
+  for (var i = 0; i < t.length; i++) {
+    var firstTd = t[i].firstChild;
+    console.log(firstTd.innerHTML);
+    tvNames.push(firstTd.innerHTML);
+
+    var price = 0;
+    for (var j = 0; j < jsonObject.tvs.length; j++) {
+      if (firstTd.innerHTML === jsonObject.tvs[j].nom) {
+        price = jsonObject.tvs[j].prix;
+        break;
+      }
+    }
+    tvPrices.push(price);
+  }
+
+  var totalPrice = 0;
+  for (var k = 0; k < tvPrices.length; k++) {
+    var tvPrice = tvPrices[k] * quantite ;  // Multiply by quantite once
+    console.log(tvNames[k] + ": " + tvPrice);
+    totalPrice += tvPrice;
+  }
+
+  span1.innerHTML = totalPrice;
+}
+
+
+
+
+
+
+
+
+
+/*function calculerPrixHT() {
+  var prixHT = 0;
+
+  panier.forEach(function(commande) {
+    var tvIndex = TVsData.TVs.findIndex(function(tv) {
+      return tv.nom === commande.référence;
+    });
+
+    if (tvIndex !== -1) {
+      var tvSelectionne = TVsData.TVs[tvIndex];
+      prixHT += tvSelectionne.prix * commande.quantité;
+    }
+  });
+
+  var prixHTElement = document.getElementById('prixHT');
+  prixHTElement.textContent = prixHT + " Dhs";
+}*/
+
+
+
+        
+    </script>
+</head>
+<body onload="remplirtvs()" >
+
+    <h1>Commander les TVs</h1>
+    <form >
+    <select>
+
+    </select>
+    <label>Quantité</label>
+    <input type="number"/>
+    </form>
+    <button onclick="ajouterAuPanier()" >ajouter au panier</button>
+    <fieldset>
+        
+        <h1>Panier de commandes</h1>
+        <table>
+            <tr id="tr" >
+                <th>REFERECES</th>
+                <th>QUANTITE</th>
+                <th>Action</th>
+            </tr>
+        </table>
+        <table id="tab">
+
+        </table>
+        <h3>Total HT : <span id="span1"></span></h3>
+        <h3>Total TTC : <span id="span2"></span></h3>
+        <button>commander</button>
+    </fieldset>
+</form>
+</body>
+</html>

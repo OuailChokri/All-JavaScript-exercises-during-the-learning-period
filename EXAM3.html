@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table th,td{
+            border: 1px solid black;
+        }
+        .selected{
+            background-color: red;
+        }
+    </style>
+    <script>
+        function Seuvegarder(){
+            var text = document.querySelectorAll("input[type=text]");
+            var number = document.querySelectorAll("input[type=number]");
+
+            for(var i=0;i<text.length;i++){
+                if(text[i].value ==""){
+                    alert('please saiser tous les champs');
+                    return false;
+                }
+            }
+            for(var i=0;i<number.length;i++){
+                if(number[i].value ==""){
+                    alert('please saiser tous les champs');
+                    return false;
+                }
+            }
+
+            var code = document.getElementById('A').value;
+            var nom = document.getElementById('B').value;
+            var prenom = document.getElementById('C').value;
+            var numero = document.getElementById('D').value;
+            var equipe = document.getElementById('E').value;
+            var tr = document.getElementById('tr');
+
+            tr.insertAdjacentHTML('afterend','<tr><td>'+code+'</td><td>'+nom+'</td><td>'+prenom+'</td><td>'+numero+'</td><td>'+equipe+'</td></tr>');
+
+            
+            var btn = document.querySelector('#btn');
+
+btn.addEventListener('click', function(e) {
+    var text = document.querySelectorAll("input[type=text]");
+    var number = document.querySelectorAll("input[type=number]");
+
+    for (var i = 0; i < text.length; i++) {
+        text[i].disabled = true;
+    }
+
+    for (var i = 0; i < number.length; i++) {
+        number[i].disabled = true;
+    }
+});
+
+    var vider = document.getElementById('vider');
+    vider.addEventListener('click',function(){
+
+    var text = document.querySelectorAll("input[type=text]");
+    var number = document.querySelectorAll("input[type=number]");
+
+    for (var i = 0; i < text.length; i++) {
+        text[i].value = "";
+    }
+
+    for (var i = 0; i < number.length; i++) {
+        number[i].value = "";
+    }
+    });
+
+    var rows = document.querySelectorAll("tr");
+var deleteButton = document.querySelector("#mybutton");
+
+deleteButton.addEventListener('click', function() {
+    var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette ligne ?");
+    if (confirmation) {
+        var selectedRows = document.querySelectorAll("tr.selected");
+        selectedRows.forEach(function(row) {
+            row.remove();
+        });
+    }
+});
+
+rows.forEach(function(row) {
+    row.addEventListener('click', function() {
+        rows.forEach(function(row) {
+            row.classList.remove('selected');
+        });
+        this.classList.add('selected');
+    });
+});
+
+class Joueur{
+    constructor(code,nom,prenom,numero,equipe){
+        this.code = code;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.numero = numero;
+        this.equipe = equipe;
+    }
+}
+
+var j1 = new Joueur(1,"wail","chokri",1,"BRIGHTON");
+console.log(j1);
+
+
+document.getElementById('btnAfficher').addEventListener('click',function(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET","https://www.kora.com/matchs",true);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState ==4 && xhr.status ==200){
+            var macths = JSON.parse(xhr.responseText);
+            afficherMatchs(matchs);
+        }
+    };
+    xhr.send();
+});
+
+function afficherMatchs(matchs){
+    var listeMatchs = document.getElementById('listeMatchs');
+    listeMatchs.innerHTML ="";
+
+    matchs.forEach(function(match){
+        var li = document.createElement('li');
+        li.textContent = match.match + '-Date :'+match.date+' -Heure : '+ match.heure; 
+        listeMatchs.appendChild(li);
+    });
+}
+
+
+}
+
+    </script>
+</head>
+<body>
+    <h1>Liste des joueurs</h1>
+    <form>
+        <fieldset>
+            <label>Code</label><br>
+            <input id="A" type="number"/><br>
+            <label>Nom</label><br>
+            <input id="B" type="text"/><br>
+            <label>Prénom</label><br>
+            <input id="C" type="text"/><br>
+            <label>Numéro</label><br>
+            <input id="D" type="number"/><br>
+            <label>Equipe</label><br>
+            <input id="E" type="text"/><br>
+            <input type="button" value="Seuvegarder" onclick="Seuvegarder()"/>
+            <input type="button" value="Annuler" id="btn"/>
+            <input type="button" value="Vider" id="vider"/>
+        </fieldset>
+    </form>
+    <table>
+        <tr id="tr" >
+            <th>Code</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Numero</th>
+            <th>Equipe</th>
+        </tr>
+    </table>
+    <button id="mybutton" ></button>
+
+
+    <button id="btnAfficher" >Afficher la liste des matchs</button>
+    <ul id="listeMatchs" >
+
+    </ul>
+</body>
+</html>

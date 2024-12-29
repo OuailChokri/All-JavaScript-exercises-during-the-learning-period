@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table th , td{
+    border: 2px solid black;
+    
+        }
+    </style>
+   
+</head>
+<body  onload="RemplirTableau()">
+    <form >
+        
+        <label>Saisir un Titre : </label>
+        <input type="text" id="t" />
+        <button type="button" onclick="filtrer(document.getElementById('t'));">Rechercher</button>
+        <button type="button" onclick="effacer()">effacer</button>
+        
+    </form><br><br><br>
+    <table>
+        <tr>
+            <th>ISBN</th>
+            <th>Titre</th>
+            <th>nomAuteur</th>
+        </tr>
+    </table>
+    <script>
+        var obj=[{"ISBN":"1102","Titre":"Livre1","NomAuteur":"JR1"},
+                 {"ISBN":"1108","Titre":"Livre2","NomAuteur":"JR2"},
+                 {"ISBN":"1109","Titre":"Livre3","NomAuteur":"JR3"},
+                 {"ISBN":"1108","Titre":"Livre4","NomAuteur":"JR4"},
+                 {"ISBN":"1199","Titre":"Livre5","NomAuteur":"JR5"}             
+                ]
+        function cellule(content) {
+            let c = document.createElement("td");
+            c.innerHTML = content ;
+            return c ;
+        }       
+        function Ajoutligne(i){
+            let parent = document.querySelector("table").firstElementChild;
+            let ligne = document.createElement("tr");
+                ligne.appendChild(cellule(obj[i].ISBN));
+                ligne.appendChild(cellule(obj[i].Titre));
+                ligne.appendChild(cellule(obj[i].NomAuteur));
+                parent.appendChild(ligne);
+        }
+        
+        function RemplirTableau(){
+            let parent = document.querySelector("table").firstElementChild;
+            for (let i=0;i<obj.length;i++)
+            {
+                Ajoutligne(i);
+            }
+        }
+        function effacer(){
+            var parent = document.querySelector("table").firstElementChild;
+            for (let i=1;i<parent.children.length;i++){
+                parent.removeChild(parent.children[i]);
+            i--;}
+
+        }
+        function filtrer(titre){
+        var parent = document.querySelector("table").firstElementChild;
+        //alert(titre.value)
+        effacer();
+        for (let i=0;i<obj.length;i++)
+            {
+                if (obj[i].Titre == titre.value);
+                Ajoutligne(i);
+            }
+        }
+        ///// KHT2
+    </script>
+
+    
+</body>
+</html>

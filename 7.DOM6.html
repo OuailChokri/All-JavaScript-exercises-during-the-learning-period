@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Exrercice 2</title>
+    <script>
+        function afficher() 
+        { 
+            var elt = document.getElementsByTagName("input")[0].value;
+            var eltt = document.getElementsByTagName(elt)[0];
+            var elts = eltt.childNodes;
+            var res = "Liste des enfants :"
+            for (var i=0;i<elts.length;i++)
+                res += elts[i].nodeName+ " , ";
+            alert(res);
+            console.log(res);
+        
+        if (eltt.previousElementSibling!=null && eltt.previousElementSibling!=undefined)    
+            alert("Le Frére Avants :"+ eltt.previousElementSibling.nodeName);
+            alert("Parent : "+eltt.parentNode.nodeName);
+        }  
+    </script>
+</head>
+<body>
+    <form>
+        <label>Nom balises :</label>
+        <input type="text"/>
+        <button type="button" onclick="afficher()">Afficher</button>
+    </form>
+
+
+   
+    
+</body>
+</html>

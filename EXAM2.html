@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulaire d'achat de TV</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            border: 2px solid rgba(7, 6, 2, 0.87);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        select, input[type="number"] {
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .supprimer {
+            background-color: #f44336;
+        }
+
+        .supprimer:hover {
+            background-color: #da190b;
+        }
+
+        #prixHT, #prixTTC {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            var TVsData = {
+                TVs: [
+                    { nom: 'SAMSUNG QLED QE65Q80AA', prix: 17999, taille: 65, images: 'images/img1.png' },
+                    { nom: 'TCL QLED 55C825', prix: 6100, taille: 42, images: 'images/img2.png' },
+                    { nom: 'SONY QLED XR-75X90J', prix: 25000, taille: 52, images: 'images/img3.png' },
+                    { nom: 'LG QLED 77C1PVA', prix: 9000, taille: 65, images: 'images/img3.png' },
+                ]
+            };
+
+            var panier = [];
+
+            function validationChamps() {
+                var tvSelectionne = $("#tvDropdown").val();
+                var quantite = parseInt($("#quantite").val());
+
+                if (tvSelectionne === "" || isNaN(quantite) || quantite < 1 || quantite > 10) {
+                    return false;
+                }
+
+                return true;
+            }
+
+            function remplirTVs() {
+                var dropdown = $("#tvDropdown");
+                dropdown.empty();
+
+                $.each(TVsData.TVs, function (index, tv) {
+                    dropdown.append($('<option></option>').val(index).text(tv.nom));
+                });
+            }
+
+            function ajouterAuPanier() {
+                if (validationChamps()) {
+                    var tvIndex = parseInt($("#tvDropdown").val());
+                    var quantite = parseInt($("#quantite").val());
+
+                    var tvSelectionne = TVsData.TVs[tvIndex];
+
+                    var commande = {
+                        référence: tvSelectionne.nom,
+                        quantité: quantite
+                    };
+
+                    panier.push(commande);
+                    $("#panierTable tbody").append('<tr><td>' + tvSelectionne.nom + '</td><td>' + quantite + '</td><td><button class="supprimer" data-index="' + (panier.length - 1) + '">Supprimer</button></td></tr>');
+                    $("#tvDropdown").val("");
+                    $("#quantite").val("");
+                    calculerPrixHT();
+                    calculerPrixTTC();
+                }
+            }
+
+            function supprimerDuPanier(index) {
+                panier.splice(index, 1);
+                $("#panierTable tbody tr").eq(index).remove();
+                calculerPrixHT();
+                calculerPrixTTC();
+            }
+
+            function calculerPrixHT() {
+                var prixHT = 0;
+
+                $.each(panier, function (index, commande) {
+                var tvIndex = TVsData.TVs.findIndex(function (tv) {
+                    return tv.nom === commande.référence;
+                });
+
+                if (tvIndex !== -1) {
+                    var tvSelectionne = TVsData.TVs[tvIndex];
+                    prixHT += tvSelectionne.prix * commande.quantité;
+                }
+                });
+
+                $("#prixHT").text(prixHT + " Dhs");
+            }
+
+            function calculerPrixTTC() {
+                var prixHT = 0;
+
+                $.each(panier, function (index, commande) {
+                var tvIndex = TVsData.TVs.findIndex(function (tv) {
+                    return tv.nom === commande.référence;
+                });
+
+                if (tvIndex !== -1) {
+                    var tvSelectionne = TVsData.TVs[tvIndex];
+                    prixHT += tvSelectionne.prix * commande.quantité;
+                }
+                });
+
+                var prixTTC = prixHT * 1.2; // Calcul du prix TTC avec une TVA de 20%
+
+                $("#prixTTC").text(prixTTC + " Dhs");
+            }
+
+            function JsonSerializer() {
+                var TVsCommande = [];
+
+                $.each(panier, function (index, commande) {
+                var tvCommande = {
+                    Référence: commande.référence,
+                    quantité: commande.quantité
+                };
+
+                TVsCommande.push(tvCommande);
+                });
+
+                var jsonData = {
+                TVs_commande: TVsCommande
+                };
+
+                return JSON.stringify(jsonData);
+                }
+
+                // Événement du bouton "Ajouter"
+                $("#ajouter").click(function () {
+                ajouterAuPanier();
+                });
+
+                // Événement du bouton "Supprimer"
+                $("#panierTable").on("click", ".supprimer", function () {
+                var index = $(this).data("index");
+                supprimerDuPanier(index);
+                });
+
+                // Remplir le dropdown des TVs
+                remplirTVs();
+            });
+    </script>
+    </head>
+
+    <body>
+        <h1>Commander les TVs</h1>
+        <div>
+            <label for="tvDropdown">TVs :</label>
+            <select id="tvDropdown"></select>
+        </div>
+
+        <div>
+            <label for="quantite">Quantité :</label>
+            <input type="number" id="quantite" min="1" max="10">
+        </div>
+
+        <button id="ajouter">Ajouter au panier</button>
+
+        <h2>Panier de commandes</h2>
+
+        <table id="panierTable">
+            <thead>
+                <tr>
+                    <th>Référence</th>
+                    <th>Quantité</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes du panier seront ajoutées ici -->
+            </tbody>
+        </table>
+
+        <h3>Total HT : <span id="prixHT">0 Dhs</span></h3>
+        <h3>Total TTC : <span id="prixTTC">0 Dhs</span></h3>
+
+        <button id="commander">Commander</button>
+
+    </div>
+
+    <script>
+        // ...
+
+        function remplirPanier() {
+            var tbody = $("#panierTable tbody");
+            tbody.empty();
+
+            $.each(panier, function (index, commande) {
+                var tvIndex = TVsData.TVs.findIndex(function (tv) {
+                    return tv.nom === commande.référence;
+                });
+
+                if (tvIndex !== -1) {
+                    var tvSelectionne = TVsData.TVs[tvIndex];
+                    var lignePanier = '<tr>' +
+                        '<td>' + tvSelectionne.nom + '</td>' +
+                        '<td>' + commande.quantité + '</td>' +
+                        '<td><img src="' + tvSelectionne.images + '" alt="' + tvSelectionne.nom + '" height="50"></td>' +
+                        '<td><button class="supprimer" data-index="' + index + '">Supprimer</button></td>' +
+                        '</tr>';
+
+                    tbody.append(lignePanier);
+                }
+            });
+        }
+
+        // ...
+
+        // Ajoutez l'appel à la fonction remplirPanier() après avoir défini l'événement du bouton "Ajouter"
+        // et après avoir appelé la fonction remplirTVs() dans $(document).ready().
+
+        remplirPanier();
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+    "Regions": [
+      {
+        "FM": {
+          "nom": "Fes Meknes",
+          "villes": ["Fes", "Meknes", "Sefrou"]
+        }
+      },
+      {
+        "CS": {
+          "nom": "Casa Settat",
+          "villes": ["Casa", "El Jadida", "Mohamadia"]
+        }
+      },
+      {
+        "TT": {
+          "nom": "Tanger Tetouan",
+          "villes": ["Tanger", "Tetouan", "Fnideq"]
+        }
+      },
+      {
+        "OR": {
+          "nom": "Orientale",
+          "villes": ["Oujda", "Berkane", "Nador"]
+        }
+      }
+    ]
+  }
+  

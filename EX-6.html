@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <table id="myTable">
+        <tr>
+          <th>Colonne 1</th>
+          <th>Colonne 2</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>Donnée 1-1</td>
+          <td>Donnée 1-2</td>
+          <td><button class="delete-btn">Supprimer</button></td>
+        </tr>
+        <tr>
+          <td>Donnée 2-1</td>
+          <td>Donnée 2-2</td>
+          <td><button class="delete-btn">Supprimer</button></td>
+        </tr>
+      </table>
+      
+      <button id="add-btn">Ajouter une ligne</button>
+       <script>
+        // Sélectionnez le bouton "Ajouter une ligne"
+const addBtn = document.querySelector('#add-btn');
+
+// Ajouter un écouteur de clic sur le bouton
+addBtn.addEventListener('click', function(){
+  // Sélectionner la table
+  const table = document.querySelector('#myTable');
+
+  // Créer une nouvelle ligne
+  const newRow = table.insertRow();
+
+  // Ajouter les deux colonnes à la nouvelle ligne
+  const newCell1 = newRow.insertCell();
+  const newCell2 = newRow.insertCell();
+
+  // Demander les informations à l'utilisateur
+  const newData1 = prompt('Entrez la donnée pour la colonne 1');
+  const newData2 = prompt('Entrez la donnée pour la colonne 2');
+
+  // Ajouter les données à la nouvelle ligne
+  newCell1.textContent = newData1;
+  newCell2.textContent = newData2;
+
+  // Ajouter un bouton "Supprimer" à la nouvelle ligne
+  const deleteBtn = document.createElement('button');
+  deleteBtn.classList.add('delete-btn');
+  deleteBtn.textContent = 'Supprimer';
+  const newCell3 = newRow.insertCell();
+  newCell3.appendChild(deleteBtn);
+
+  // Ajouter un écouteur de clic sur le bouton "Supprimer"
+  deleteBtn.addEventListener('click', () => {
+    table.deleteRow(newRow.rowIndex);
+  });
+});
+
+       </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Formulaire d'inscription à la formation</title>
+<script src="EXAM4.js" ></script>
+<style>
+.main-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 25px;
+}
+
+.left-part,
+form {
+  padding: 25px;
+}
+
+.left-part {
+  text-align: center;
+}
+
+form {
+  background: rgba(216, 58, 58, 0.1);
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+input, select {
+  padding: 5px;
+  margin-bottom: 30px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+button {
+  width: 100%;
+}
+</style>
+</head>
+<body onload="createfrom()" >
+<div class="main-block">
+  <div class="left-part">
+    <h1>Vous enregistrer au cours</h1>
+  </div>
+  <form>
+    <div class="title">
+      <h2>Inscrivez-vous ici</h2>
+    </div>
+    <div class="info">
+      <input type="text" id="A" name="name" placeholder="Nom complet">
+      <input type="text" id="B" name="mail" placeholder="Email">
+      <input type="text" id="C" name="tel" placeholder="Numéro de téléphone">
+      <select name="course-type">
+        <option value="course-type" selected>Type de cours*</option>
+        <option value="short-courses">Cours courts</option>
+        <option value="featured-courses">Cours facturé</option>
+      </select>
+    </div>
+    <input type="button" value="Envoyer" onclick="Verifier()"/>
+  </form>
+</div>
+</body>
+</html>

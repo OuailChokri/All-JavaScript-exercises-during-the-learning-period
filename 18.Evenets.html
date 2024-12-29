@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        div{
+            width: 150px;
+            height: 130px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div onmousemove="f1(event)" onmouseout="f2()"></div>
+    <p id="demo" ></p>
+    <script>
+        /*function f1(e){
+            var x = e.clientX;
+            var y = e.clientY;
+            var coor = "Coords :("+x+","+y+")";
+            document.getElementById("demo").innerHTML = coor;
+        }*/
+        function f1(e){
+            var x = e.screenX;
+            var y = e.screenY;
+            var coor = "Coords :("+x+","+y+")";
+            document.getElementById("demo").innerHTML = coor;
+        }
+        function f2(){
+            document.getElementById("demo").innerHTML = "";
+        }
+    </script>
+    
+</body>
+</html>

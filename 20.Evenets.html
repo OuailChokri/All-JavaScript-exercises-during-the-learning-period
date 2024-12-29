@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    
+</head>
+<body>
+    <form>
+        <label>Ecrire un id :</label>
+        <input type="text" id="id"/>
+        <label>Choisir une ville :</label>
+        <select multiple>
+            <option>Safi</option>
+            <option>agadir</option>
+            <option>Casa</option>
+        </select>
+        <button type="button" >Afficher les enfants</button>
+        <label id="resultat"></label>
+    </form>
+    <script>
+        //focus
+        //blur
+        let t = document.getElementById("id");
+        t.addEventListener("blur",function(){
+        t.style.borderRadius = "50%"; 
+        });
+        t.addEventListener("focus",function(){
+            t.style.backgroundColor = "white";
+            t.style.padding = "20px";
+            t.style.borderRadius = "0%";
+        });
+        t.addEventListener("mousout",function(){
+            t.style.backgroundColor = "red";
+        });
+        t.addEventListener("keypress",function(){
+            if (event.key =="A")
+            {
+                alert("A increditet!!essayer encore!");
+                event.preventDefault();
+            }
+        })
+    </script>
+    
+</body>
+</html>

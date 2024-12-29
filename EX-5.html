@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Create a List</h1>
+<button onclick="createList()">Create List</button>
+
+<ul id="myList"></ul>
+
+
+<script>
+function createList() {
+  let list = document.getElementById("myList");
+  
+
+  do {
+    itemContent = prompt("Enter list item content:");
+    if (itemContent !== "" && itemContent !== null) {
+      listItem = document.createElement("li");
+      listItem.innerText = itemContent;
+      listItem.style.color = "blue";
+      listItem.addEventListener("click", function() {
+        alert(this.innerText);
+      });
+      list.appendChild(listItem);
+
+      let numItems = list.getElementsByTagName("li").length;
+      let label = document.createTextNode("Item " + numItems+": ");
+      listItem.insertBefore(label, listItem.firstChild);
+    }
+  } while (itemContent !== "" && itemContent !== null);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Phrase lettre par lettre</title>
+</head>
+<body>
+	<p id="ma-phrase"></p>
+
+	<script >
+        const phrase = "Bonjour, comment ça va ? ";
+const p = document.getElementById("ma-phrase");
+
+let index = 0;
+
+function afficherLettre() {
+  p.textContent += phrase[index];
+  index++;
+
+  if (index >= phrase.length) {
+    setTimeout(reinitialiser, 1000);
+    return;
+  }
+
+  setTimeout(afficherLettre, 50);
+}
+
+function reinitialiser() {
+  p.textContent = "";
+  index = 0;
+  setTimeout(afficherLettre, 0);
+}
+
+afficherLettre();
+
+    </script>
+</body>
+</html>

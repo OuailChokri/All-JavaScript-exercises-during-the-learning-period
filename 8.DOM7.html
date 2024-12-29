@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table tr,td,th{
+            border: solid 2px;
+            border-collapse: collapse;
+        }
+    </style>
+<script>
+    function ajouter(){
+        var elt = document.createElement("tr");
+        elt.class="lignes";
+        document.getElementById("tb").appendChild(elt);
+        var cases1= document.createElement("td");
+        cases1.innerHTML = prompt("id :");
+        elt.appendChild(cases1);
+        var cases2 = document.createElement("td");
+        cases2.innerHTML = prompt("Nom : ");
+        elt.appendChild(cases2);
+
+    }
+</script>
+</head>
+<body>
+    <h1>Exrercice SUR L'ajoute d'un Nouvel élement via java script</h1>
+    <table id="tb" >
+        <tr><th>ID</th><th>Nom</th></tr>
+        <tr><td>1111</td><td>ELHAKIMI</td></tr>
+    </table>
+    <br><br/>
+    <button type="button" onclick="ajouter()" >Ajouter un nouvele ligne</button>
+
+    
+</body>
+</html>

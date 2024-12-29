@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+</head>
+<body>
+    
+</body>
+<script>
+    let MyElement = document.createElement("div");
+    let MyAttr = document.createAttribute("src");
+    let MyText = document.createTextNode("The lord OF the Rings");
+    let myComment = document.createComment("This is A div");
+
+    MyElement.appendChild(MyText);
+    MyElement.appendChild(myComment);
+    document.body.appendChild(MyElement);
+  </script>
+</html>

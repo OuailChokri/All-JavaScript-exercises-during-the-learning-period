@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Liste des villes</title>
+	<style>
+		.selected {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<label for="ville">Ville :</label>
+	<input type="text" id="ville" name="ville">
+	<button id="ajouter">Ajouter</button>
+	<button id="supprimer">Supprimer</button>
+	<ul id="villes">
+	</ul>
+
+	<script >
+        const inputVille = document.getElementById("ville");
+const buttonAjouter = document.getElementById("ajouter");
+const buttonSupprimer = document.getElementById("supprimer");
+const listeVilles = document.getElementById("villes");
+
+let villes = [];
+
+buttonAjouter.addEventListener("click", () => {
+  const ville = inputVille.value.trim();
+
+  if (ville !== "") {
+    villes.push(ville);
+    afficherVilles();
+    inputVille.value = "";
+  }
+});
+
+listeVilles.addEventListener("click", (event) => {
+  const elementClique = event.target;
+  if (elementClique.tagName === "LI") {
+    elementClique.classList.toggle("selected");
+  }
+});
+
+buttonSupprimer.addEventListener("click", () => {
+  villes = villes.filter((ville) => !listeVilles.querySelector(`li[data-ville="${ville}"]`).classList.contains("selected"));
+  afficherVilles();
+});
+
+function afficherVilles() {
+  listeVilles.innerHTML = "";
+  villes.forEach((ville) => {
+    const li = document.createElement("li");
+    li.textContent = ville;
+    li.setAttribute("data-ville", ville);
+    listeVilles.appendChild(li);
+  });
+}
+
+    </script>
+</body>
+</html>

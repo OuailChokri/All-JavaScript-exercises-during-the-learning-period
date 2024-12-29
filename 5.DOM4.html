@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+
+    <a href="#">lien1</a>
+    <p id="p" ></p>
+        <a href="#">lien2</a>
+        <a href="#">lien3</a>
+        <a href="#">lien4</a>
+
+
+
+    <script>
+//textContent : le texte entre les balises.
+//innerHTML : touts les choses entre les balises .
+let par = document.getElementById("p");
+let enfs = par.childNodes;
+let res = "Liste des enfants : ";
+for (let i=0;i<enfs.length;i++){
+res +=enfs[i].textContent+" ";
+}
+alert(res);
+console.log(res);
+    </script>
+    
+</body>
+</html>

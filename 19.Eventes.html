@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+</head>
+<body>
+    <input type="text" onkeydown="f1()">
+    <input type="text" onkeypress="f2()">
+    <input type="text" onkeyup="f3()">
+
+
+   <script>
+function f1(){
+    alert("touche enfoncé!!");
+}
+function f2(){
+    alert("touche enfoncée!!");
+}
+function f3(){
+    let x = document.querySelector("text");
+    x.value = x.value.toUpperCase();
+}
+   </script> 
+</body>
+</html>

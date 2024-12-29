@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemple de script pour afficher/masquer un paragraphe</title>
+    <style>
+        /* Par défaut, tous les paragraphes sont masqués */
+        p {
+            display: none;
+        }
+        /* Le titre du paragraphe est stylisé comme un lien */
+        h2 {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Titre du paragraphe 1</h2>
+    <p>Ceci est le contenu du premier paragraphe.</p>
+    <h2>Titre du paragraphe 2</h2>
+    <p>Ceci est le contenu du deuxième paragraphe.</p>
+    
+
+    <script>
+        // Récupère tous les éléments h2 dans la page
+        const titres = document.querySelectorAll('h2');
+
+        // Ajoute un écouteur d'événements de clic à chaque titre
+        for (const titre of titres) {
+            titre.addEventListener('click', function() {
+                // Cache tous les paragraphes
+                const paragraphs = document.querySelectorAll('p');
+                for (const paragraph of paragraphs) {
+                    paragraph.style.display = 'none';
+                }
+                // Affiche le paragraphe correspondant au titre cliqué
+                titre.nextElementSibling.style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>

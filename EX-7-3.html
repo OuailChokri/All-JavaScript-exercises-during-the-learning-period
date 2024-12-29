@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Compteur de clics</title>
+</head>
+<body>
+	<button id="mon-bouton">Cliquez ici</button>
+	<p>Nombre de clics : <span id="compteur">0</span></p>
+
+	<script >
+        const bouton = document.getElementById("mon-bouton");
+const compteur = document.getElementById("compteur");
+
+let nbClics = 0;
+
+bouton.addEventListener("click", () => {
+  nbClics++;
+  compteur.textContent = nbClics;
+});
+
+    </script>
+</body>
+</html>
