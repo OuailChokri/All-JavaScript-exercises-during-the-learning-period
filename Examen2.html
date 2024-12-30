@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="Ex.js"></script>
+    <style>
+        form {
+    width: 60%;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+form:hover {
+    background-color: lightgray;
+}
+
+legend {
+    text-transform: uppercase;
+}
+
+label {
+    background-color: #f0f0f0;
+    padding: 5px;
+}
+
+label:hover {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select {
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+select:focus {
+    background-color: lightblue;
+    border: 1px solid darkblue;
+}
+
+input[type="submit"]:hover {
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="reset"]:hover {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    
+        <form>
+            <fieldset>
+            <table>
+                <tr>
+                    <td><label>Sexe :</label></td>
+                    <td><input type="radio">Homme <input type="radio">Femme</td>
+                </tr>
+                <tr>
+                    <td><label>Nom :</label></td>
+                    <td><input type="text" id="A" /></td>
+                </tr>
+                <tr>
+                    <td><label>Prenom :</label></td>
+                    <td><input type="text" id="B"/></td>
+                </tr>
+                <tr>
+                    <td><label>Age :</label></td>
+                    <td><input type="number" id="C"/></td>
+                </tr>
+                <tr>
+                    <td><label>Pseudo :</label></td>
+                    <td><input type="text" id="D"/></td>
+                </tr>
+                <tr>
+                    <td><label>Mot de passe :</label></td>
+                    <td><input type="password" id="E"/></td>
+                </tr>
+                <tr>
+                    <td><label>Mot de passe (confirmation) :</label></td>
+                    <td><input type="password" id="F"/></td>
+                </tr>
+                <tr>
+                    <td><label>Pays :</label></td>
+                    <td><select id="S">
+                        <option>Selectionner votre pays de résidence</option>
+                        <option>Maroc</option>
+                        <option>Libie</option>
+                        <option>Palestine</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox">Je désire recevoir la newsletter chaque mois.</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="M'inscrire" onclick="verifier(event)"/></td>
+                    <td><input type="reset" value="Réinitialiser le formulaire"/></td>
+                </tr>
+            </table>
+        </fieldset>
+        </form>
+    
+</body>
+</html>

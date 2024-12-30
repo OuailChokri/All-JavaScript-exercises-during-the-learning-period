@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        fieldset {
+			width: 500px;
+			border: 2px solid #dcdcdc;
+			border-radius: 10px;
+			padding: 10px 20px;
+			text-align: leftt;
+		}
+        .A{
+            width: 400px;
+        }
+    </style>
+    <script src="inscription.js" ></script>
+    
+</head>
+<body>
+    <fieldset>
+        <legend>Vos coordonnées</legend>
+        <form>
+            <table>
+                <tr>
+                    <td><label>Nom : </label></td>
+                    <td><input required placeholder="Votre nom" class="A" type="text" /></td>
+                </tr>
+                <tr>
+                    <td><label>Prénom : </label></td>
+                    <td><input placeholder="votre prenom" class="A" type="text"/></td>
+                </tr>
+                <tr>
+                    <td><label>Date de naissance : </label></td>
+                    <td><input  class="A" type="date"/></td>
+                </tr>
+                <tr>
+                    <td><label>Mail : </label></td>
+                    <td><input placeholder="votre adresse email" class="A" type="email"/></td>
+                </tr>
+                <tr>
+                    <td><label>Votre site web</label></td>
+                    <td><input placeholder="votre site web" type="url" class="A"/></td>
+                </tr>
+                <tr>
+                    <td><label>Mot de passe : </label></td>
+                    <td><input placeholder="votre mot de passe" id="m" class="A" type="password"/></td>
+                </tr>
+                <tr>
+                    <td><label>Genre : </label></td>
+                    <td><input type="radio" id="r" >Homme <input type="radio" id="r">Femme</td>
+                </tr>
+                <tr>
+                    <td><label>Pays : </label></td>
+                    <td><select class="A" id="s">
+                        <option>Votre pays</option>
+                        <option >France</option>
+                        <option>Maroc</option>
+                    </select></td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>Vos formations</legend>
+        <form>
+            <input id="c" type="checkbox">Formation en HTML5
+            <input  id="c" type="checkbox">Formation en CSS3
+            <input  id="c" type="checkbox">Formation en JS <br><br>
+            <textarea placeholder="Decrivez vos besoin en formation" class="A" cols="70" rows="10"></textarea> 
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>Envoyez nous votre photo</legend>
+        <input id="f" type="file"><br><br>
+        
+                <input type="reset" value="Effacer">
+                <input type="submit" onclick="verif()" />
+          
+    </fieldset>
+    
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h1{
+            text-align: center;
+        }
+        table{
+            border: solid 2px;
+        }
+        input{
+            width: 90px;
+        }
+    </style>
+    <script src="Personnel.js" ></script>
+    <script>
+        function init(){
+            var donnees = JSON.parse(x);
+            var ligne = document.getElementById('l');
+            ligne.id="";
+            var i;
+            var mat,nom,prenom;
+            for (i=donnees.Personnel.length-1;i>=0;i--){
+                mat = donnees.Personnel[i].Matricule;
+                nom = donnees.Personnel[i].Nom;
+                prenom = donnees.Personnel[i].Prenom;
+ligne.insertAdjacentHTML("afterend",'<tr class="tr1"><td>'+mat+'</td><td>'+nom+'&'+prenom+'</td>'+
+                    '<td><input type="text"/></td><td><input type="text"/></td>'+
+                    '<td><input type="text"/></td><td><input type="text"/></td>'+
+                    '<td><input type="text"/></td><td><input type="text"/></td>'+
+                    '<td><input type="text"/></td><td><input type="button" value="Calculer" onclick="calc(this.parentNode.parentNode)"/></td>'+
+                    '</tr>'
+                    );     
+            }
+        }
+        function Verification(mat){
+            var L = document.getElementsByClassName("tr1");
+            var i,pos,v;
+            for(i=0;i<L.length;i++){
+                v = L[i].cells[0].innerHTML;
+                if(v==mat){
+                    pos=i;
+                    break;
+                }
+            }
+            for(i=2;i<=6;i++){
+                if(parseInt(L[pos].cells[i].firstChild.value)<0 || parseInt(L[pos].cells[i].firstChild.value)>20)
+                    return false;
+            }
+            return true;
+        }
+        function calc(e){
+            var i;
+            var som=0;
+            if(Verification(e.cells[0].innerHTML)){
+                for(i=2;i<=6;i++)
+                som+=parseFloat(e.cells[i].firstChild.value);
+                e.cells[7].firstChild.value=som;
+                Decision(e.cells[0].innerHTML);
+            }
+            else{
+                alert("Notes doivent etre entre 0 et 20!!");
+            }
+        }
+        
+        function Decision(mat){
+            var L=document.getElementsByClassName("tr1");
+            var i,pos,v;
+            for(i=0;i<L.length;i++){
+                v=L[i].cells[0].innerHTML;
+                if(v==mat){
+                    pos=i;
+                    break;
+                }
+            }   
+            if (parseFloat(L[pos].cells[7].firstChild.value)>=70)
+             L [pos].cells[8].firstChild.value="Rapide";
+             if (parseFloat(L[pos].cells[7].firstChild.value)>=50 && parseInt(L[pos].cells[7].firstChild.value)<70)
+             L[pos].cells[8].firstChild.value = "Moyen";
+             if (parseFloat(L[pos].cells[7].firstChild.value)<50)
+             L[pos].cells[8].firstChild.value = "Long";
+        }
+        function generer(){
+            var L=document.getElementsByClassName("tr1");
+            var i,j;
+            for(i=0;i<L.length;i++){
+                for(j=2;j<=6;j++){
+                    L[i].cells[j].firstChild.value=(Math.floor(Math.random()*20));
+                }
+            }
+        }
+        function CalculerTou(){
+            var L=document.getElementsByClassName("tr1");
+            var i,j;
+            for(i=0;i<L.length;i++){
+                calc(L[i]);
+            }
+        }
+        function Stat(){
+            var L=document.getElementsByClassName("tr1");
+            var i,cmpRapide=0,cmpMoy=0,cmpLong=0;
+            for (i=0;i<L.length;i++){
+                if(L[i].cells[8].firstChild.value=="Rapide")cmpRapide++;
+                if(L[i].cells[8].firstChild.value=="Moyen")cmpMoy++;
+                if(L[i].cells[8].firstChild.value=="Long")cmpLong++;
+
+            }
+            document.getElementById("rap").innerHTML = cmpRapide+"Personne(s)";
+            document.getElementById("rap").style="background-color: green;";
+            document.getElementById("moy").innerHTML = cmpMoy+"Personne(s)";
+            document.getElementById("moy").style="background-color: orange;";
+            document.getElementById("lon").innerHTML = cmpLong+"Personne(s)";
+            document.getElementById("lon").style="background-color: red;";
+
+        }
+        function eff(){
+            document.getElementById("efface").type="reset";
+        }
+    </script>
+</head>
+<body onload="init()">
+    <h1>Notation Personnel</h1>
+    <form>
+        <table>
+            <tr id="l">
+                <th>Matricule</th>
+                <th>Nom&Prenom</th>
+                <th>Asiduité</th>
+                <th>Discipline</th>
+                <th>Animation</th>
+                <th>Encadrement</th>
+                <th>Prépartion Cour</th>
+                <th>Note</th>
+                <th>Décision</th>
+                <th></th>
+            </tr>
+            <tr><td><input type="button" value="Calculer Tous" onclick="CalculerTou()"/></td>
+            <td><input type="button" value="Effacer" onclick="eff()" id="efface"/></td>
+            <td><input type="button" value="Generer" onclick="generer()"/></td>
+            <td><input type="button"value="Statistiques" onclick="Stat()"/></td>
+             </tr>
+        </table>
+        <table>
+            <tr><td>Avancement Rapide :</td><td id="rap"></td></tr>
+            <tr><td>Avancement Moyen :</td><td id="moy"></td></tr>
+            <tr><td>Avancement Long :</td><td id="lon"></td></tr>
+        </table>
+    </form>
+</body>
+</html>

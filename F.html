@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <script>
+        function AfficherEnfants(){
+            var p = [
+                {
+                    "personne": {
+                        "id": "1102",
+                        "nom": "samir",
+                        "Enfants": [
+                            {"prenom": "aya", "age": "19"},
+                            {"prenom": "ali", "age": "20"},
+                            {"prenom": "Amine", "age": "21"}
+                        ]
+                    }
+                },
+                {
+                    "personne": {
+                        "id": "2102",
+                        "nom": "wail",
+                        "Enfants": [
+                            {"prenom": "Mohamed", "age": "22"},
+                            {"prenom": "Amina", "age": "15"}
+                        ]
+                    }
+                }
+            ];
+
+        var nom = document.getElementById("p").value;
+        var res = "Liste des Enfants : ";
+        
+        for (var i=0;i<p.length;i++){
+            if (p[i].personne.nom == nom){
+
+                
+            for (var j=0;j<p[i].personne.Enfants.length;j++){
+                
+                res += "Prenom :"+p[i].personne.Enfants[j].prenom + " Age : "+ p[i].personne.Enfants[j].age +" , ";
+                
+            } 
+            alert(res);
+            return;
+            
+        }
+        }
+        alert("Personne N'existe!");
+        }
+        
+    </script>
+</head>
+<body>
+    <form >
+        <input type="text" name="" id="p"/>
+        <button type="button" onclick="AfficherEnfants()" >Afficher</button>
+    </form>
+    
+</body>
+</html>

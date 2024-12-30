@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        /*jQuery(document).ready(function(){
+            // Method 1:
+            // type your code here
+        });
+
+        jQuery(function(){
+            // Method 2:
+            // type your code here
+        });
+
+        jQuery(function($){
+            // Method 3:
+            alert("jQuery is ready!");
+        });*/
+    </script>
+    <script>
+        // cache les elements ayant comme class : 'e'
+        $(function(){
+            $('.e').hide();
+            alert('le Nombre des input dans la page :'
+            +$('input').length);
+            $('input[type="button"]').click(function(){
+                var nom = $('#n').val();
+                var prenom = $('#p').val();
+                alert('Le nom est Le Prenom : '+nom+' '+prenom);
+            })
+        });
+
+    </script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="e" >HTML5</li>
+            <li>Css3</li>
+            <li class="e" >JavaScript</li>
+        </ul>
+    </nav>
+    <section>
+        <form>
+            <label>Nom :</label><input id="n" type="text"/>
+            <label id="t">Prenom :</label><input id="p" type="text"/>
+            <input type="button" value="tester"/>
+        </form>
+    </section>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h2{
+            text-align: center;
+            background-color: rebeccapurple;
+        }
+        p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mon petit Jeux </h2><br>
+    <p>Vous avons Choisir un Nombre entre 1 et 100.
+        <br> Essayer Ton Choix Dans la champs Suivants :
+    </p>
+    <label>Essayer :</label>
+    <input type="number" id="inp">
+    <button onclick="Verefier()" >Teaster</button>
+    <label id="label"></label>
+    <label id="labell"></label>
+
+</body>
+<script>
+    var n = Math.floor(Math.random()*100)+1;
+    var label = document.querySelector("#label");
+    var b = document.querySelector("button");
+    var labell = document.getElementById("labell");
+    var cmp = 1;
+    function Verefier(){
+        var inp = parseInt(document.querySelector("#inp").value);
+
+        if (cmp == 1){
+                labell.textContent = "Vos tests : ";
+            }
+            labell.textContent += inp + ' ';
+
+            if (n == inp ){
+                label.innerHTML = "Bravoo!"; 
+                label.style.backgroundColor = "orange";
+            }
+            else if (cmp == 3){
+                label.innerHTML = "!!GameOver!!/le Bon nombre est : "+n;b.disabled=true;
+                label.style.backgroundColor = "purple";
+            }
+            else{
+                label.innerHTML = "Faux!!"
+                label.style.backgroundColor="red";
+            }
+        cmp++;
+        document.querySelector("#inp").value = "";
+        document.querySelector("#inp").focus();
+
+    }
+</script>
+</html>

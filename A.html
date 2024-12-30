@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <img src="EEEE.png" alt="THE WITCHER" id="w">
+    
+</body>
+<script>
+        
+            var w = document.querySelector("#w");
+    var l = document.createElement("img");
+    l.src = "EEE.png";
+    var h = document.createElement("img");
+    h.src = "EE.png";
+    for (var i = 0; i < 10 ; i++){
+        w.onclick = function(){
+        document.body.removeChild(w);
+        document.body.appendChild(l);
+    }
+    l.onclick = function(){
+        document.body.removeChild(l);
+        document.body.appendChild(h);
+    }
+    h.onclick = function(){
+        document.body.removeChild(h);
+        document.body.appendChild(w);
+    }
+    }
+    
+</script>
+</html>
+<script>
+   /** HTML : 
+<body>
+    <img src="" alt="IMG">
+<body>
+    **/
+   /** JS :
+     var img = document.querySelector("img");
+    var L = ["EE.png","EEE.png","EEEE.png"];
+    var i = Math.floor(Math.random()*3);
+    img.src = L[i];
+    **/
+</script>

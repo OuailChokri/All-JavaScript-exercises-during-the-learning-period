@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<body>
+    <table id="myTable">
+        <tr>
+          <th>Colonne 1</th>
+          <th>Colonne 2</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>Donnée 1-1</td>
+          <td>Donnée 1-2</td>
+          <td><button class="delete-btn">Supprimer</button></td>
+        </tr>
+        <tr>
+          <td>Donnée 2-1</td>
+          <td>Donnée 2-2</td>
+          <td><button class="delete-btn">Supprimer</button></td>
+        </tr>
+      </table>
+      
+      <button id="add-btn">Ajouter une ligne</button>
+</body>
+<script>
+
+   var addbtn = document.querySelector("#add-btn");
+   addbtn.onclick = function(){
+    var table = document.querySelector("#myTable");
+    newRow = table.insertRow();
+    newdata1 = prompt("Entrer Id :");
+    newdata2 = prompt("Entrer Name : ");
+    newCell1 = newRow.insertCell();
+    newCell2 = newRow.insertCell();
+    newCell1.innerHTML = newdata1;
+    newCell2.textContent = newdata2;
+    newCell3 = newRow.insertCell();
+    var rembtn = document.createElement("button");
+    rembtn.innerHTML = "Supprimer";
+    newCell3.appendChild(rembtn);
+    rembtn.onclick = function(){
+        supp(this);
+    };
+   }
+   function supp(elt){
+    var row = elt.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+
+   }
+    
+</script>
+</html>

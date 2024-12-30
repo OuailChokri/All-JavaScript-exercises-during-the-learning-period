@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        //function valnum(value) {
+          //  return !isNaN(parseFloat(value)) && isFinite(value);
+        //}
+        function valnum(value){
+            return !isNaN(parseFloat(value));
+        }
+        
+        function validerCodePostal() {
+            var codepostal = document.getElementById("codepostal").value;
+            if (!valnum(codepostal)) {
+                alert("Le code postal doit être numérique !");
+                document.getElementById("codepostal").value = "";
+            }
+        }
+
+        function validerFormulaire() {
+            var nom = document.getElementById("nom").value;
+            var prenom = document.getElementById("prenom").value;
+            if (nom.trim() === "" || prenom.trim() === "") {
+                alert("Les champs nom et prénom sont obligatoires !");
+                return false;
+            }
+            if (nom.length > 40 || prenom.length > 40) {
+                alert("Les champs nom et prénom ne doivent pas dépasser 40 caractères !");
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</head>
+<body>
+    <form action="enregistrer.php" method="post" onsubmit="return validerFormulaire()">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required maxlength="40">
+      
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required maxlength="40">
+      
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+      
+        <label for="telephone">Téléphone :</label>
+        <input type="tel" id="telephone" name="telephone">
+      
+        <label for="adresse">Adresse :</label>
+        <textarea id="adresse" name="adresse"></textarea>
+      
+        <label for="codepostal">Code postal :</label>
+        <input type="text" id="codepostal" name="codepostal" onchange="validerCodePostal()">
+      
+        <input type="submit" value="Envoyer">
+    </form>
+</body>
+</html>

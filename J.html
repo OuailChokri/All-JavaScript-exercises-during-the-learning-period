@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Manipulation de DOM</title>
+	<script>
+		function Afficher() {
+			// Récupérer le nom de la balise saisie dans la zone de texte
+			var nomBalise = document.querySelector("input[type='text']").value;
+			// Trouver l'élément correspondant à la balise
+			var element = document.querySelector(nomBalise);
+			// Vérifier si l'élément existe
+			if (element) {
+				// Afficher les noms des balises enfants
+				console.log("Les balises enfants de <" + nomBalise + ">: ");
+				for (var i = 0; i < element.children.length; i++) {
+					console.log(element.children[i].tagName);
+				}
+				// Afficher les noms des frères avant
+				console.log("Les balises frères avant de <" + nomBalise + ">: ");
+				var sibling = element.previousSibling;
+				while (sibling) {
+					if (sibling.nodeType === 1) {
+						console.log(sibling.tagName);
+					}
+					sibling = sibling.previousSibling;
+				}
+				// Afficher le nom de la balise parent
+				console.log("Le nom de la balise parent de <" + nomBalise + ">: " + element.parentNode.tagName);
+			} else {
+				console.log("La balise <" + nomBalise + "> n'existe pas.");
+			}
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<label>Nom balise :</label>
+		<input type="text"/>
+		<button type="button" onclick="Afficher()">Afficher</button>
+	</form>
+</body>
+</html>

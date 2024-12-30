@@ -1,0 +1,22 @@
+[
+    {
+        "cc": "MAD",
+        "Symbol":"MAD",
+        "name":"Morrocan dirham"
+    },
+    {
+        "cc": "EUR",
+        "Symbol":"\u20ac",
+        "name":"European euro"
+    },
+    {
+        "cc": "USD",
+        "Symbol":"US$",
+        "name":"United States dollar"
+    },
+    {
+        "cc": "AED",
+        "Symbol":"\u062f.\u0625",
+        "name":"UAE dirham"
+    }
+]

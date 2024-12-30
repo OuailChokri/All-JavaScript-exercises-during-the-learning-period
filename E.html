@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function AfficherEnfats(){
+            p = {"personne" : {"id":"1102","nom":"khalidi","Enfants":
+           [{"prenom":"aya","age":"19"},
+            {"prenom":"ali","age":"20"},
+            {"prenom":"Amine","age":"21"}]}};
+        var nom = document.getElementById("p").value;
+        var res = "Liste des Enfants : ";
+        if (p.personne.nom == nom){
+            for (var j=0;j<3;j++){
+                
+                res += "Prenom :"+p.personne.Enfants[j].prenom + " Age : "+p.personne.Enfants[j].age+" , ";
+                
+            } 
+            alert(res);
+            
+        }
+        else{
+            alert("Personne n'existe pas");
+        }
+        }
+        
+        
+    </script>
+</head>
+<body>
+    <form >
+        <input type="text" name="" id="p"/>
+        <button type="button" onclick="AfficherEnfats()" >Afficher</button>
+    </form>
+</body>
+</html>

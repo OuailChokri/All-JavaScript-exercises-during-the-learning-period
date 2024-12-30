@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <h1>Choisir La date :</h1>
+    <input type="date" id="H" >
+    <button onclick="Aff()" >Afficher</button>
+</body>
+<script>
+    function Aff(){
+    var H = new Date (document.getElementById('H').value);
+    var Mois = H.getMonth();
+    if (Mois % 2 == 0 || Mois==7) alert('31');
+        
+    else if (Mois == 1) alert('29');
+    
+    else {alert('30');}
+        
+    
+    }
+        </script>
+</html>

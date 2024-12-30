@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestion des stagiaires</title>
+  <style>
+    table tr th td {
+        border: 1px solid rebeccapurple;
+    }
+    .red {
+      color: red;
+    }
+css
+Copy code
+.green {
+  color: green;
+}
+  </style>
+</head>
+<body>
+  <h2>Ajouter un stagiaire</h2>
+  <form id="formStagiaire" onsubmit="return validerFormulaire(event)">
+    <label for="id">ID:</label>
+    <input type="text" id="id" ><br>
+python
+Copy code
+<label for="nom">Nom:</label>
+<input type="text" id="nom" ><br>
+
+<label>Filière :</label>
+<input type="radio" id="noteTDM" name="note" value="TDM" >TDM
+<input type="radio" id="noteTFM" name="note" value="TFM" >TFM
+<input type="radio" id="noteTJM" name="note" value="TJM" >TJM <br>
+
+<label>Note :</label>
+<input type="number" id="note" />
+
+
+<input type="submit" value="Ajouter la note" onclick="ajouterLigne(event)">
+  </form>
+  <h2>Lire les données d'un stagiaire</h2>
+  <label for="inputID">ID:</label>
+  <input type="text" id="inputID">
+  <button id="btnLire" onclick="lireDonnees()">Lire</button>
+  <h2>Liste des notes</h2>
+  <table id="listeNotes">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Filière</th>
+        <th>Note</th>
+        <th>Supprimer</th>
+      </tr>
+    </thead>
+    <tbody id="listeBody"></tbody>
+  </table>
+  <script>
+    // Validation en JavaScript
+    function validerFormulaire(e) {
+      e.preventDefault();
+      var id = document.getElementById("id").value;
+      var nom = document.getElementById("nom").value;
+      var note = document.getElementById("note");
+      var radioChecked = document.querySelectorAll("input[type=radio]");
+      var check = "";
+      for (var i = 0; i < radioChecked.length; i++) {
+        if (radioChecked[i].checked) {
+          check = radioChecked[i].value;
+          break;
+        }
+      }
+
+      if (id === "" || nom === "" || note === "") {
+        alert("Veuillez remplir tous les champs !");
+        return false;
+      }
+
+      return true;
+    }
+
+    // Ajouter une ligne au tableau
+    function ajouterLigne(event) {
+      event.preventDefault();
+      var id = document.getElementById("id").value;
+      var nom = document.getElementById("nom").value;
+      var note = document.getElementById("note").value;
+      var radioChecked = document.querySelectorAll("input[type=radio]");
+      var check = "";
+      for (var i = 0; i < radioChecked.length; i++) {
+        if (radioChecked[i].checked) {
+          check = radioChecked[i].value;
+          break;
+        }
+      }
+      
+
+      var table = document.getElementById("listeBody");
+      var row = table.insertRow();
+
+      var cellId = row.insertCell();
+      cellId.innerHTML = id;
+
+      var cellNom = row.insertCell();
+      cellNom.innerHTML = nom;
+
+      var cellFiliere = row.insertCell();
+      cellFiliere.innerHTML = check;
+
+      var cellNote = row.insertCell();
+      cellNote.innerHTML = note;
+
+      var cellBtn = row.insertCell();
+  var btn = document.createElement("button");
+  btn.innerHTML = "Supprimer";
+  btn.addEventListener("click", function() {
+    supprimerLigne(this);
+  });
+  cellBtn.appendChild(btn);
+}
+      
+      if (note < 10) {
+        cellNote.classList.add("red");
+      } else {
+        cellNote.classList.add("green");
+      }
+    
+
+    // Lire les données d'un stagiaire
+    function lireDonnees() {
+      var inputID = document.getElementById("inputID").value;
+      var table = document.getElementById("listeBody");
+      var rows = table.getElementsByTagName("tr");
+
+      for (var i = 0; i < rows.length; i++) {
+        var cellId = rows[i].getElementsByTagName("td")[0];
+        if (cellId.innerHTML === inputID) {
+          var cellNom = rows[i].getElementsByTagName("td")[1];
+          var cellFiliere = rows[i].getElementsByTagName("td")[2];
+          var cellNote = rows[i].getElementsByTagName("td")[3];
+          alert("ID: " + cellId.innerHTML + "\nNom: " + cellNom.innerHTML + "\nFilière: " + cellFiliere.innerHTML + "\nNote: " + cellNote.innerHTML);
+          return;
+        }
+      }
+
+      alert("Aucun stagiaire trouvé avec cet ID !");
+    }
+
+    // Supprimer une ligne
+    function supprimerLigne(button) {
+      if (confirm("Êtes-vous sûr de vouloir supprimer cette ligne ?")) {
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      }
+    }
+
+    // Ajouter un écouteur aux boutons "Supprimer"
+    var supprimerButtons = document.getElementsByClassName("btnSupprimer");
+    for (var i = 0; i < supprimerButtons.length; i++) {
+      supprimerButtons[i].addEventListener("click", function() {
+        supprimerLigne(this);
+      });
+    }
+
+    // Actualiser la note maximale
+    function actualiserNoteMax() {
+      var table = document.getElementById("listeBody");
+      var rows = table.getElementsByTagName("tr");
+      var maxNote = 0;
+
+      for (var i = 0; i < rows.length; i++) {
+        var cellNote = rows[i].getElementsByTagName("td")[3];
+        var note = parseFloat(cellNote.innerHTML);
+        if (note > maxNote) {
+          maxNote = note;
+        }
+      }
+
+      var noteMaxElement = document.getElementById("noteMax");
+      noteMaxElement.innerHTML = maxNote;
+    }
+  </script>
+</body>
+</html>

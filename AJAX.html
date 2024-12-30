@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+     <script>
+        /* function loadJSON(){
+             var obj = new XMLHttpRequest();
+             obj.open("GET", "device.json", true);
+             obj.onreadystatechange = function(){
+                 if (obj.readyState == 4 && obj.status == 200){
+                     var j = JSON.parse(obj.responseText);
+                     for (var i = 0; i < j.length; i++){
+                         document.getElementById("appareil").innerHTML += "<option>" + j[i].name + "</option>";
+                     }
+                 }
+             }
+             obj.send(null);
+         }*/
+     </script>
+     <script>
+      /*  function loadJSON() {
+  $.ajax({
+    url: "device.json",
+    dataType: "json",
+    success: function(data) {
+      for (var i = 0; i < data.length; i++) {
+        $("#appareil").append("<option>" + data[i].name + "</option>");
+      }
+    }
+  });
+}*/
+
+function loadJSON(){
+    $.ajax({
+        url:"device.json",
+        dataType:"json",
+        success:function(data){
+            for(var i=0;i<data.length;i++){
+                $("#appareil").append("<option>" + data[i].name + "</option>");
+            }
+        }
+    });
+}
+     </script>
+</head>
+<body onload="loadJSON()">
+     <form>
+         <select id="appareil"></select>
+     </form>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+   <script>
+  $(function() {
+  $('input').click(function() {
+    $.getJSON('device.json', function(result) {
+      $.each(result, function(i, field) {
+        $('#device').append("<option>"+field.name +"</option>");
+      });
+    });
+  });
+});
+   </script>
+</head>
+<body  >
+    <form>
+        <input type="button" value="Remplir select"/>
+        <select id="device">
+
+        </select>
+    </form>
+</body>
+</html>

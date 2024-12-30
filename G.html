@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function list(){
+            var i = formulaire.pays.selectedIndex;
+       if(i == 0){
+        for(j=1;j<4;j++)
+        formulaire.ville.options[j].value = "";
+       }
+       else
+       {
+        switch(i)
+        {
+            case 1 : var vi = new Array("Rabat","casa","tanger");break;
+            case 2 : var vi = new Array("paris","marseille","lille");break;
+            case 3 : var vi = new Array("Madrid","Barcelona","Seveille");break;
+        }
+        for(k = 0 ; k<3;k++){
+            formulaire.ville.options[k].text = vi[k];
+        }
+        formulaire.pays.selectedIndex = 0;
+       }
+
+
+        }
+       
+
+    </script>
+</head>
+<body>
+    <form name="formulaire">
+        <select name="pays" onchange="list()">
+            <option>Selectioner une pays</option>
+        <option>Maroc</option>
+        <option>France</option>
+        <option>Spain</option>
+        </select>
+        <select name="ville">
+            <option>Selectioner une ville</option>
+            <option>
+                <option>
+                    <option>
+        </select>
+    </form>
+    
+</body>
+</html>

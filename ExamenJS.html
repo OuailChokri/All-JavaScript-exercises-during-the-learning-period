@@ -1,0 +1,41 @@
+https://apcpedagogie.com/examen-3-en-html-css-et-js/
+https://apcpedagogie.com/examen-3-en-html-css-et-js/
+https://apcpedagogie.com/examen-3-en-html-css-et-js/
+https://apcpedagogie.com/examen-3-en-html-css-et-js/
+https://apcpedagogie.com/examen-3-en-html-css-et-js/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        
+        function FC1(){
+            var inp = document.getElementById('A').value;
+            var lab = document.getElementById('B');
+            lab.textContent = " Bounjour : "+inp;
+        }
+        
+        function FC2(){
+            var inpp = document.getElementById('C').value;
+            var labb = document.getElementById('D');
+            labb.innerHTML = " that god : "+parseInt(inpp);
+            if (inpp == 0){
+                var p = prompt("Entrer un nombre grande pour 0 :");
+                labb.innerHTML = " that god : "+parseInt(p);
+            }
+            else {
+                labb.innerHTML = "that god: " + parseFloat(inpp);
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <form >
+        <label>Entrer Votre Nom Et Prenom : </label><input id="A" type="text"/>
+        <button type="button" onclick="FC1()" >Afficher : </button><label id="B"></label> <br>
+        <label>Entrer Un nombre : </label><input id="C" type="number"/>
+        <button type="button" onclick="FC2()" >Afficher : </button><label id="D" ></label>
+    </form>
+    
+</body>
+</html>
